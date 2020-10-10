@@ -63,6 +63,16 @@ df = as.data.frame(sample)
 ggplot(data = df ) + 
   geom_histogram ( mapping = aes(x = sample ), 
                    binwidth = 1, color="black", fill="blue" )
+
+
 ############################
+
+ggplot(data = membership ) + 
+  geom_boxplot ( mapping = aes(y = Percentage ) ) +
+  coord_flip()
+
+
+
+
 
 
