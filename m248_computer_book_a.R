@@ -29,7 +29,6 @@ ggplot(data = workforce, aes(x = reorder(Occupation, -Total), y = Total) ) +
 
 
 #########
-
 library(tidyr)
 
 workforce_long <- gather(workforce, gender, count, Male:Female, factor_key=TRUE)
@@ -38,4 +37,32 @@ str(workforce_long)
 ggplot(data = workforce_long, aes(x = reorder(Occupation, -Total), y = count, fill = gender) ) +
   geom_bar ( stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+
+#####
+### membership 
+####
+membership <- read.csv("membership.csv", header = TRUE)
+colnames(membership) <- c("Percentage")
+str(membership)
+
+ggplot(data = membership ) + 
+  geom_histogram ( mapping = aes(x = Percentage ), 
+                   binwidth = 1, color="black", fill="blue" )
+
+ggplot(membership, aes(x=Percentage)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="blue", binwidth = 1)+
+  geom_density(alpha=.2, fill="#FF6666") 
+
+mu = mean(membership$Percentage)
+std = sd(membership$Percentage)
+
+sample = rnorm(100, mean = mu, sd = std)
+
+df = as.data.frame(sample)
+ggplot(data = df ) + 
+  geom_histogram ( mapping = aes(x = sample ), 
+                   binwidth = 1, color="black", fill="blue" )
+############################
+
 
