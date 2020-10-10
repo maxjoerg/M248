@@ -31,6 +31,7 @@ ggplot(data = workforce, aes(x = reorder(Occupation, -Total), y = Total) ) +
 #########
 
 library(tidyr)
+
 workforce_long <- gather(workforce, gender, count, Male:Female, factor_key=TRUE)
 str(workforce_long) 
 
@@ -38,8 +39,3 @@ ggplot(data = workforce_long, aes(x = reorder(Occupation, -Total), y = count, fi
   geom_bar ( stat = "identity") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
-
-
-
-
-  
