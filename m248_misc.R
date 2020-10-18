@@ -296,6 +296,34 @@ ggplot(data = df ) +
             colour="red", size = 3) 
 
 ################################
+### using a standard unifrom distribution to simulate
+###the rolls of a six sided die
+### the intervall [0,1] hast to be partitioned into 6 compartments
+###########################
+
+simu_roll_die <- function(){
+  
+  tests <- c(1/6, 2/6, 3/6, 4/6, 5/6, 6/6)
+  throw <- runif(1,0,1)
+  res <- throw <  tests
+  temp <- min(tests[res]) * 6
+  temp
+}
+simu_roll_die()
+
+result <- replicate(1000,simu_roll_die())
+
+
+throws <- data.frame(result)
+##str(throws)
+##library(ggplot2)
+
+ggplot(throws) +
+  geom_bar ( mapping = aes(x = result),fill = "blue", alpha = 0.4
+  ) 
+
+
+
 
 
 
